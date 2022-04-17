@@ -36,8 +36,6 @@ public class BinanceWSClient extends WebSocketClient {
             BinanceEvent binanceEvent = objectMapper.readValue(s, BinanceEvent.class);
             if ("trade".equals(binanceEvent.getEvent())) {
                 applicationEventPublisher.publishEvent(TradeEvent.builder().event(binanceEvent).source(this).build());
-            } else {
-                System.out.println(">>>" + s);
             }
         } catch (JsonProcessingException e) {
             log.error("Client {}, Message parsing error, Message: {}.",identifier, s);
