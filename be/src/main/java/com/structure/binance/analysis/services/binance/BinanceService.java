@@ -97,5 +97,4 @@ public class BinanceService implements ApplicationListener<SymbolUpdatedEvent> {
             executor.schedule(SendingTask.builder().connection(getCurrentClient().getConnection()).request(subscribeRequest).build(), initialDelay, TimeUnit.MILLISECONDS);
         }
     }
-
 }
