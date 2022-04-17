@@ -1,6 +1,7 @@
 package com.structure.binance.analysis.services.binance;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.structure.binance.analysis.BinanceMethods;
 import com.structure.binance.analysis.dtos.binance.requests.BinanceWSRequest;
 import com.structure.binance.analysis.dtos.internal.events.SymbolUpdatedEvent;
 import lombok.RequiredArgsConstructor;
@@ -93,7 +94,7 @@ public class BinanceService implements ApplicationListener<SymbolUpdatedEvent> {
                 addNewClientToPool();
             }
             currentClientSymbols += symbolBatch.size();
-            BinanceWSRequest subscribeRequest = BinanceWSRequest.builder().id(++requestId).params(symbolBatch).method("SUBSCRIBE").build();
+            BinanceWSRequest subscribeRequest = BinanceWSRequest.builder().id(++requestId).params(symbolBatch).method(BinanceMethods.SUBSCRIBE.getMethodName()).build();
             executor.schedule(SendingTask.builder().connection(getCurrentClient().getConnection()).request(subscribeRequest).build(), initialDelay, TimeUnit.MILLISECONDS);
         }
     }

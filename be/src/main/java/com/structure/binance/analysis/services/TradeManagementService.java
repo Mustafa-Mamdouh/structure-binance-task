@@ -30,7 +30,7 @@ public class TradeManagementService implements ApplicationListener<TradeEvent> {
 
 
     public Object getSymbolInfo(String symbol) {
-        if ("symbols".equals(symbol)) {
+        if ("symbols".equalsIgnoreCase(symbol)) {
             return tradesMap.values().stream().map(mapper::asDto).collect(Collectors.toList());
         } else if (tradesMap.containsKey(symbol)) {
             return mapper.asDto(tradesMap.get(symbol));
