@@ -35,7 +35,7 @@ public class TradeManagementService implements ApplicationListener<TradeEvent> {
         } else if (tradesMap.containsKey(symbol)) {
             return mapper.asDto(tradesMap.get(symbol));
         } else {
-            return new ApplicationException(HttpStatus.BAD_REQUEST.value(), String.format("Symbol [%s] not found!"));
+            return new ApplicationException(HttpStatus.BAD_REQUEST.value(), String.format("Symbol [%s] not found!", symbol));
         }
     }
 }
