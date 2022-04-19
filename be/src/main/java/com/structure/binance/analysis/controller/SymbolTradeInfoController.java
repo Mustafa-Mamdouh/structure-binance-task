@@ -19,4 +19,9 @@ public class SymbolTradeInfoController {
     public ResponseEntity getAllSymbolsInfo(@PathVariable("symbol") String symbol) {
         return ResponseEntity.ok(tradeManagementService.getSymbolInfo(symbol));
     }
+
+    @GetMapping(value = "new/{symbol}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity getAllSymbolsInfo2(@PathVariable("symbol") String symbol) {
+        return ResponseEntity.ok(tradeManagementService.getSymbolInfo2(symbol));
+    }
 }
